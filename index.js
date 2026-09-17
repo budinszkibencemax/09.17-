@@ -5,7 +5,8 @@ const port = 3030;
 const { 
     getHello,
     getKonyvek,
-    getKonyvById
+    getKonyvById,
+    createKonyv
 } = require("./services/konyv_service");
 
 // req.body miatt
@@ -21,6 +22,12 @@ app.get("/konyvek", getKonyvek);
 // paraméterben szereplőadatok szövegek "2"
 
 app.get("/konyvek/:id",getKonyvById);
+
+// adatfelvitel
+// Post kérés
+// req.body --> önmagában a végpont nem tudja mi ez ezért kellapp.use(express.json()) 
+// app.use(express.json()) --> megmondja hogy jsonben fogadjuk az adatok
+app.post("/ujkonyv", createKonyv);
 
 
 app.listen(port, () => {
